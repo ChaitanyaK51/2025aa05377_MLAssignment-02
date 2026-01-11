@@ -1,4 +1,4 @@
-<img width="822" height="361" alt="image" src="https://github.com/user-attachments/assets/2b28d13d-bd6e-4295-b374-97e1ea1bba45" /><img width="822" height="361" alt="image" src="https://github.com/user-attachments/assets/0572f1b2-6a86-45cd-ad56-3f35150558d2" /># 2025aa05377_MLAssignment-02
+# 2025aa05377_MLAssignment-02
 Machine Learning Assignment 02
   Name: KALE CHAITANYA PRASAD 
   Student Id: 2025AA050377
