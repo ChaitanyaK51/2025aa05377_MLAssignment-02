@@ -1,7 +1,7 @@
-# 2025aa05377_MLAssignment-02
+<img width="822" height="361" alt="image" src="https://github.com/user-attachments/assets/2b28d13d-bd6e-4295-b374-97e1ea1bba45" /><img width="822" height="361" alt="image" src="https://github.com/user-attachments/assets/0572f1b2-6a86-45cd-ad56-3f35150558d2" /># 2025aa05377_MLAssignment-02
 Machine Learning Assignment 02
-Name: KALE CHAITANYA PRASAD 
-Student Id: 2025AA050377
+  Name: KALE CHAITANYA PRASAD 
+  Student Id: 2025AA050377
 
 **DATA SET NAME: Student Academic Placement Performance Dataset**
 
@@ -56,4 +56,23 @@ Each model was evaluated using the following metrics:
   4. Recall
   5. F1 Score
   6. Matthews Correlation Coefficient (MCC)
+
+Binary Model Performance:
+
+Multi-class Model Performance:
+
+
+
+Model Performance Observations :-
+| ML Model Name            | Observation about Model Performance                                                                                                                          |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Logistic Regression      | Performed well as a baseline classifier with stable results, but struggled to capture complex non-linear relationships present in the dataset.               |
+| Decision Tree            | Showed good interpretability but exhibited signs of overfitting, leading to fluctuating performance across evaluation metrics.                               |
+| kNN                      | Performance was sensitive to feature scaling and choice of k. It worked reasonably well but was computationally less efficient for larger datasets.          |
+| Naive Bayes              | Delivered fast predictions but showed lower accuracy due to the strong assumption of feature independence, which does not fully hold for this dataset.       |
+| Random Forest (Ensemble) | Achieved strong performance across most metrics by reducing overfitting through ensemble learning and handling feature interactions effectively.             |
+| XGBoost (Ensemble)       | Provided the best overall performance with high AUC, F1 Score, and MCC, demonstrating superior capability in modeling complex patterns and class boundaries. |
+
+
+
 
