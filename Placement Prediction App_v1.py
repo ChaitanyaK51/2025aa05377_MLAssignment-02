@@ -76,12 +76,12 @@ for col in df.select_dtypes(include="object").columns:
 if "salary_package_lpa" in df.columns:
     df["salary_range"] = pd.cut(
         df["salary_package_lpa"],
-        bins=[0, 3, 6, 10, 50],
+        bins=[0, 6, 10, 20, 50],
         labels=[
-            "Low (≤3 LPA)",
-            "Medium (3–6 LPA)",
-            "High (6–10 LPA)",
-            "Very High (>10 LPA)"
+            "Low (≤6 LPA)",
+            "Medium (6–10 LPA)",
+            "High (10–20 LPA)",
+            "Very High (>20 LPA)"
         ]
     )
 
@@ -233,17 +233,20 @@ if "salary_range" in df.columns:
 
     st.header("📈 Placement Status vs Salary Range")
 
-    cross_tab = pd.crosstab(
-        df["salary_range"],
-        df["placement_status"]
-    )
-
-    fig3, ax3 = plt.subplots()
-    cross_tab.plot(kind="bar", stacked=True, ax=ax3)
+    cross_tab.plot(
+    kind="bar",
+    stacked=True,
+    ax=ax3,
+    color=["tab:blue", "tab:orange"]  # Explicit color mapping
+)
 
     ax3.set_xlabel("Salary Range")
     ax3.set_ylabel("Number of Students")
     ax3.set_title("Placement Outcome Across Salary Ranges")
-    ax3.legend(["Not Placed", "Placed"])
-
+    
+    ax3.legend(
+        ["Not Placed", "Placed"],
+        title="Placement Status"
+    )
+    
     st.pyplot(fig3)
