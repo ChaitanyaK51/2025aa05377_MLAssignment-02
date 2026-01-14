@@ -12,6 +12,7 @@
 # 
 # # Student Academic Placement Performance Dataset
 #%%
+import streamlit as st
 import pandas as pd
 import numpy as np
 
@@ -30,9 +31,23 @@ from sklearn.ensemble import RandomForestClassifier
 
 from xgboost import XGBClassifier
 #%%
-df = pd.read_csv("E:\\Chaitanya Personal Data\\M.Tech Material\\Study Material\\ML\\student_academic_placement_performance_dataset.csv",index_col=0)
-print("Shape of Data Set is:", df.shape)
-df.head()
+st.set_page_config(
+    page_title="Student Placement Prediction",
+    layout="centered"
+)
+
+st.title("🎓 Student Placement & Salary Range Prediction")
+st.write("Classification-based prediction (No Regression Used)")
+
+#%%
+@st.cache_data
+def load_data():
+    df = pd.read_csv("student_academic_placement_performance_dataset.csv")
+    if "sl_no" in df.columns:
+        df.drop(columns=["sl_no"], inplace=True)
+    return df
+
+df = load_data()
 #%%
 le = LabelEncoder()
 for col in df.select_dtypes(include="object").columns:
@@ -46,15 +61,22 @@ X1 = df.drop(
 
 y1 = df["placement_status"]
 
-scaler = StandardScaler()
-X1 = scaler.fit_transform(X1)
+scaler1 = StandardScaler()
+X1_scaled = scaler1.fit_transform(X1)
 
 X1_train, X1_test, y1_train, y1_test = train_test_split(
-    X1, y1,
+    X1_scaled,
+    y1,
     test_size=0.2,
     random_state=42,
     stratify=y1
 )
+
+placement_model = RandomForestClassifier(
+    n_estimators=200,
+    random_state=42
+)
+placement_model.fit(X1_train, y1_train)
 #%%
 ## SALARY RANGE CLASSIFICATION (PLACED ONLY)
 placed_df = df[df["placement_status"] == 1].copy()
@@ -84,14 +106,22 @@ X2 = placed_df.drop(
 
 y2 = placed_df["salary_class"]
 
-X2 = scaler.fit_transform(X2)
+scaler2 = StandardScaler()
+X2_scaled = scaler2.fit_transform(X2)
 
 X2_train, X2_test, y2_train, y2_test = train_test_split(
-    X2, y2,
+    X2_scaled,
+    y2,
     test_size=0.2,
     random_state=42,
     stratify=y2
 )
+
+salary_model = RandomForestClassifier(
+    n_estimators=200,
+    random_state=42
+)
+salary_model.fit(X2_train, y2_train)
 #%%
 ## MODEL DEFINITIONS
 binary_models = {
@@ -186,7 +216,37 @@ salary_results = evaluate_models(
 )
 #%%
 print("\nPLACEMENT STATUS PREDICTION RESULTS\n")
-print(placement_results.sort_values("F1 Score", ascending=False))
+print(placement_results.sort_values("MCC", ascending=False))
 
 print("\nSALARY RANGE PREDICTION RESULTS\n")
-print(salary_results.sort_values("F1 Score", ascending=False))
+print(salary_results.sort_values("MCC", ascending=False))
+#%%
+st.header("📥 Enter Student Details")
+
+user_input = []
+for col in X1.columns:
+    val = st.number_input(
+        label=f"{col}",
+        value=0.0,
+        step=1.0
+    )
+    user_input.append(val)
+
+user_input = np.array(user_input).reshape(1, -1)
+user_input_scaled = scaler1.transform(user_input)
+#%%
+if st.button("🔍 Predict"):
+    placement_pred = placement_model.predict(user_input_scaled)[0]
+    placement_prob = placement_model.predict_proba(user_input_scaled)[0][1]
+
+    if placement_pred == 1:
+        st.success(f"✅ PLACED (Confidence: {placement_prob:.2f})")
+
+        salary_scaled = scaler2.transform(user_input)
+        salary_class = salary_model.predict(salary_scaled)[0]
+        salary_range = salary_encoder.inverse_transform([salary_class])[0]
+
+        st.info(f"💰 Predicted Salary Range (LPA): {salary_range}")
+
+    else:
+        st.error(f"❌ NOT PLACED (Confidence: {1 - placement_prob:.2f})")
