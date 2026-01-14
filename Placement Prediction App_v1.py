@@ -233,20 +233,28 @@ if "salary_range" in df.columns:
 
     st.header("📈 Placement Status vs Salary Range")
 
+    cross_tab = pd.crosstab(
+        df["salary_range"],
+        df["placement_status"]
+    )
+
+    fig3, ax3 = plt.subplots()
+
     cross_tab.plot(
-    kind="bar",
-    stacked=True,
-    ax=ax3,
-    color=["tab:blue", "tab:orange"]  # Explicit color mapping
-)
+        kind="bar",
+        stacked=True,
+        ax=ax3,
+        color=["tab:blue", "tab:orange"]  # Blue = Not Placed, Orange = Placed
+    )
 
     ax3.set_xlabel("Salary Range")
     ax3.set_ylabel("Number of Students")
     ax3.set_title("Placement Outcome Across Salary Ranges")
-    
+
     ax3.legend(
         ["Not Placed", "Placed"],
         title="Placement Status"
     )
-    
+
     st.pyplot(fig3)
+
