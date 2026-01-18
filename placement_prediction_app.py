@@ -141,9 +141,10 @@ salary_counts = df["salary_range"].value_counts(sort=False)
 
 ax = salary_counts.plot(kind="bar")
 
-ax.bar_label(ax.containers[0])
+for i, v in enumerate(salary_counts.values):
+    ax.text(i, v, str(v), ha="center", va="bottom")
 
-
+plt.show()
 
 # --------------------------------------------------
 # FEATURE & TARGET SPLIT
@@ -285,10 +286,7 @@ if "salary_range" in df.columns:
     ax2.set_title("Student Salary Package Distribution")
 
     st.pyplot(fig2)
-    ax = salary_counts.plot(kind="bar")
-
-    ax.bar_label(ax.containers[0])
-
+    
 
 # --------------------------------------------------
 # SALARY RANGE vs PLACEMENT STATUS
@@ -311,7 +309,5 @@ if "salary_range" in df.columns:
     ax3.legend(["Not Placed", "Placed"])
 
     st.pyplot(fig3)
-    ax = salary_counts.plot(kind="bar")
-
-    ax.bar_label(ax.containers[0])
+    
 
