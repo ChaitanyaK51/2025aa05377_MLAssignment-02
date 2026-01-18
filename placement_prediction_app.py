@@ -124,7 +124,7 @@ salary_order = [
     "Low (≤3 LPA)",
     "Medium (3–5 LPA)",
     "High (5–10 LPA)",
-    "Very High (10-15 LPA)"
+    "Very High (10-15 LPA)",
     "Not Placed"
 ]
 
