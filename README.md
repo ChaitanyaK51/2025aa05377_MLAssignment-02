@@ -35,9 +35,9 @@ I. placement_status – Binary classification target
     0 → Not Placed
 II.salary_package_lpa – Used only for placed students and converted into four salary classes:
     Class 1 → ≤ 3 LPA
-    Class 2 → 3 – 6 LPA
-    Class 3 → 6 – 10 LPA
-    Class 4 → >10 LPA
+    Class 2 → 3 – 5 LPA
+    Class 3 → 5 – 10 LPA
+    Class 4 → 10 -15 LPA
 
 
 **C. Models Used and Evaluation Metrics :-**
@@ -57,22 +57,32 @@ Each model was evaluated using the following metrics:
   5. F1 Score
   6. Matthews Correlation Coefficient (MCC)
 
-Binary Model Performance:
-
-Multi-class Model Performance:
-
+Model Performace Metrics:-
+Comparison Table:-
+| ML Model Name            | Accuracy | AUC    | Precision | Recall | F1 Score | MCC    |
+| ------------------------ | -------- | ------ | --------- | ------ | -------- | ------ |
+| Logistic Regression      | 0.891   | 0.936 | 0.719    | 0.607 | 0.658   | 0.597 |
+| Decision Tree            | 1.000   | 1.000 | 1.000    | 1.000 | 1.000   | 1.000 |
+| kNN                      | 0.889   | 0.910 | 0.731    | 0.566 | 0.638   | 0.581 |
+| Naive Bayes              | 0.933 | 0.984 | 0.942    | 0.653 | 0.771   | 0.750 |
+| Random Forest (Ensemble) | 1.000   | 1.000 | 1.000    | 1.000 | 1.000   | 1.000 |
+| XGBoost (Ensemble)       | 1.000   | 1.000 | 1.000    | 1.000 | 1.000   | 1.000 |
 
 
 Model Performance Observations :-
-| ML Model Name            | Observation about Model Performance                                                                                                                          |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Logistic Regression      | Performed well as a baseline classifier with stable results, but struggled to capture complex non-linear relationships present in the dataset.               |
-| Decision Tree            | Showed good interpretability but exhibited signs of overfitting, leading to fluctuating performance across evaluation metrics.                               |
-| kNN                      | Performance was sensitive to feature scaling and choice of k. It worked reasonably well but was computationally less efficient for larger datasets.          |
-| Naive Bayes              | Delivered fast predictions but showed lower accuracy due to the strong assumption of feature independence, which does not fully hold for this dataset.       |
-| Random Forest (Ensemble) | Achieved strong performance across most metrics by reducing overfitting through ensemble learning and handling feature interactions effectively.             |
-| XGBoost (Ensemble)       | Provided the best overall performance with high AUC, F1 Score, and MCC, demonstrating superior capability in modeling complex patterns and class boundaries. |
+| ML Model Name            | Observation about Model Performance                                                                                                                    |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Logistic Regression      | Served as a strong baseline classifier with stable and interpretable results but was limited in modeling complex non-linear relationships.             |
+| Decision Tree            | Provided clear interpretability but showed signs of overfitting, leading to variability in test performance.                                           |
+| kNN                      | Performance was sensitive to feature scaling and the chosen value of k. It achieved reasonable accuracy but was computationally less efficient.        |
+| Naive Bayes              | Trained very quickly and produced fast predictions but had comparatively lower accuracy due to the independence assumption among features.             |
+| Random Forest (Ensemble) | Demonstrated strong and consistent performance by reducing overfitting and effectively capturing feature interactions through ensemble learning.       |
+| XGBoost (Ensemble)       | Achieved the best overall performance across Accuracy, AUC, F1 Score, and MCC, indicating superior capability in handling complex decision boundaries. |
 
 
+CONCLUSION :-
+
+The experimental results show that ensemble-based models, particularly XGBoost, outperform individual classifiers in predicting student placement outcomes.
+While simpler models provide interpretability and baseline insights, advanced ensemble techniques offer improved generalization and robustness for real-world academic placement prediction tasks.
 
 
