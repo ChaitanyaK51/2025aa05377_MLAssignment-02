@@ -121,6 +121,23 @@ df["salary_range"] = np.where(
         ], include_lowest=True),
     "Not Placed"
     )
+salary_order = [
+    "Low (≤5 LPA)",
+    "Medium (5–8 LPA)",
+    "Moderate (8–10 LPA)",
+    "High (10–15 LPA)",
+    "Very High (>15 LPA)",
+    "Not Placed"
+]
+
+df["salary_range"] = pd.Categorical(
+    df["salary_range"],
+    categories=salary_order,
+    ordered=True
+)
+
+salary_counts = df["salary_range"].value_counts(sort=False)
+
 
 # --------------------------------------------------
 # FEATURE & TARGET SPLIT
