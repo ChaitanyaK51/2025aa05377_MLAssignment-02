@@ -111,7 +111,7 @@ df["salary_range"] = np.where(
     df["placement_status"] == 1,
     pd.cut(
         df["salary_package_lpa"],
-        bins=[5, 8, 10, 15, 20],
+        bins=[0, 5, 8, 10, 15, 20],
         labels=[
             "Low (≤8 LPA)",
             "Medium (8–10 LPA)",
