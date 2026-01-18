@@ -111,22 +111,20 @@ df["salary_range"] = np.where(
     df["placement_status"] == 1,
     pd.cut(
         df["salary_package_lpa"],
-        bins=[0, 5, 8, 10, 15, 20],
+        bins=[0, 3, 5, 10, 15],
         labels=[
-            "Low (≤5 LPA)",
-            "Medium (5–8 LPA)",
-            "Moderate(8-10 LPA)",
-            "High (10–15 LPA)",
-            "Very High (>15 LPA)"
+            "Low (≤3 LPA)",
+            "Medium (3–5 LPA)",
+            "High (5–10 LPA)",
+            "Very High (10-15 LPA)"
         ], include_lowest=True),
     "Not Placed"
     )
 salary_order = [
-    "Low (≤5 LPA)",
-    "Medium (5–8 LPA)",
-    "Moderate (8–10 LPA)",
-    "High (10–15 LPA)",
-    "Very High (>15 LPA)",
+    "Low (≤3 LPA)",
+    "Medium (3–5 LPA)",
+    "High (5–10 LPA)",
+    "Very High (10-15 LPA)"
     "Not Placed"
 ]
 
