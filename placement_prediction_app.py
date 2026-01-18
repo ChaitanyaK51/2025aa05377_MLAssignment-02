@@ -55,7 +55,7 @@ with open("sample_student_placement.csv", "rb") as file:
     st.download_button(
         label="📥 Download Sample CSV",
         data=file,
-        file_name="sample_student_placement.csv",
+        file_name="student_academic_placement_performance_dataset.csv",
         mime="text/csv"
     )
 
