@@ -42,7 +42,7 @@ Key Features Includes:
 🏢 Work Experience (in Months)
 📜 Professional Certifications
 📅 Attendance Percentage
-❌ Academic Backlogs
+❌ Academic Backlogs")
 
 
 # --------------------------------------------------
