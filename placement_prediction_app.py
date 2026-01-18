@@ -136,14 +136,13 @@ df["salary_range"] = pd.Categorical(
 
 salary_counts = df["salary_range"].value_counts(sort=False)
 
-import matplotlib.pyplot as plt
-
 ax = salary_counts.plot(kind="bar")
 
-for container in ax.containers:
-    ax.bar_label(container, padding=3)
+for i, v in enumerate(salary_counts.values):
+    ax.text(i, v, str(v), ha="center", va="bottom")
 
 plt.show()
+
 
 
 
