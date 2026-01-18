@@ -31,7 +31,7 @@ from pathlib import Path
 st.set_page_config(page_title="2025AA05377 ML Assignment 02", layout="centered")
 st.title("🎓 Student Placement Prediction App")
 st.write("Classification-based Machine Learning Models")
-st.write("The app predicts the placement status of the student based on key Features")
+st.write("**The app predicts the placement status of the student based on key Features**")
 st.write("""
 ### 🔑 Key Features Include:
 - 📘 Secondary School Academic Percentage
@@ -52,10 +52,9 @@ st.write("""
 # --------------------------------------------------
 st.header("⬇️ Download Sample Dataset")
 
-st.write(
-    "Download a Student Performace Data CSV file to understand the required format. "
-    "Fill the data in required format and upload."
-    "You can upload this file directly to test the app."
+st.write("Download a Student Performace Data CSV file to understand the required format ")
+st.write("Fill the data in required format and upload.")
+st.write("You can upload this file directly to test the app.")
 )
 
 csv_path = Path(__file__).parent / "student_academic_placement_performance_dataset.csv"
