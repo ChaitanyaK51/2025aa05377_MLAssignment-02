@@ -113,11 +113,11 @@ df["salary_range"] = np.where(
         df["salary_package_lpa"],
         bins=[0, 5, 8, 10, 15, 20],
         labels=[
-            "Low (≤8 LPA)",
-            "Medium (8–10 LPA)",
-            "Moderate(10-15 LPA)",
-            "High (15–20 LPA)",
-            "Very High (>20 LPA)"
+            "Low (≤5 LPA)",
+            "Medium (5–8 LPA)",
+            "Moderate(8-10 LPA)",
+            "High (10–15 LPA)",
+            "Very High (>15 LPA)"
         ], include_lowest=True),
     "Not Placed"
     )
