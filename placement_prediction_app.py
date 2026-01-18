@@ -32,19 +32,19 @@ st.set_page_config(page_title="2025AA05377 ML Assignment 02", layout="centered")
 st.title("🎓 Student Placement Prediction App")
 st.write("Classification-based Machine Learning Models")
 st.write
-("The app predicts the placement status of the student based on key Features:")
+("The app predicts the placement status of the student based on key Features")
 st.markdown("""
 ### 🔑 Key Features Include:
-- 📘 **Secondary School Academic Percentage**
-- 🎓 **Higher Secondary Academic Percentage**
-- 🏫 **Degree Academic Percentage**
-- 📝 **Entrance Examination Score**
-- 💻 **Technical Skill Score**
-- 🗣️ **Soft Skill Score**
-- 🏢 **Work Experience (in Months)**
-- 📜 **Professional Certifications**
-- 📅 **Attendance Percentage**
-- ❌ **Academic Backlogs**
+📘 **Secondary School Academic Percentage**
+🎓 **Higher Secondary Academic Percentage**
+🏫 **Degree Academic Percentage**
+📝 **Entrance Examination Score**
+💻 **Technical Skill Score**
+🗣️ **Soft Skill Score**
+🏢 **Work Experience (in Months)**
+📜 **Professional Certifications**
+📅 **Attendance Percentage**
+❌ **Academic Backlogs**
 """)
 
 
