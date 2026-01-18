@@ -286,7 +286,14 @@ if "salary_range" in df.columns:
     ax2.set_title("Student Salary Package Distribution")
 
     st.pyplot(fig2)
-    
+
+ax = salary_counts.plot(kind="bar")
+
+for i, v in enumerate(salary_counts.values):
+    ax.text(i, v, str(v), ha="center", va="bottom")
+
+plt.show()
+
 
 # --------------------------------------------------
 # SALARY RANGE vs PLACEMENT STATUS
@@ -309,5 +316,12 @@ if "salary_range" in df.columns:
     ax3.legend(["Not Placed", "Placed"])
 
     st.pyplot(fig3)
-    
+
+ax = salary_counts.plot(kind="bar")
+
+for i, v in enumerate(salary_counts.values):
+    ax.text(i, v, str(v), ha="center", va="bottom")
+
+plt.show()
+
 
