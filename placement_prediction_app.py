@@ -33,7 +33,7 @@ from xgboost import XGBClassifier
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+from pathlib import Path
 # --------------------------------------------------
 # PAGE CONFIG
 # --------------------------------------------------
@@ -41,8 +41,10 @@ st.set_page_config(page_title="ML Assignment 02", layout="centered")
 st.title("🎓 Student Placement Prediction App")
 st.write("Classification-based Machine Learning Models")
 
+
+
 # --------------------------------------------------
-# DOWNLOAD SAMPLE DATASET
+# DOWNLOAD SAMPLE DATASET (LOCAL FILE)
 # --------------------------------------------------
 st.header("⬇️ Download Sample Dataset")
 
@@ -51,13 +53,18 @@ st.write(
     "You can upload this file directly to test the app."
 )
 
-with open("student_academic_placement_performance_dataset", "rb") as file:
-    st.download_button(
-        label="📥 Download Sample CSV",
-        data=file,
-        file_name="student_academic_placement_performance_dataset.csv",
-        mime="text/csv"
-    )
+csv_path = Path(__file__).parent / "student_academic_placement_performance_dataset.csv"
+
+if csv_path.exists():
+    with open(csv_path, "rb") as file:
+        st.download_button(
+            label="📥 Download Sample CSV",
+            data=file,
+            file_name="student_academic_placement_performance_dataset.csv",
+            mime="text/csv"
+        )
+else:
+    st.error("Sample CSV file not found in app directory.")
 
 # --------------------------------------------------
 # DATASET UPLOAD
