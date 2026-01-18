@@ -118,7 +118,8 @@ df["salary_range"] = np.where(
             "Moderate(10-15 LPA)",
             "High (15–20 LPA)",
             "Very High (>20 LPA)"
-        ]
+        ], include_lowest=True),
+    "Not Placed"
     )
 
 # --------------------------------------------------
