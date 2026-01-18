@@ -52,10 +52,9 @@ st.write("""
 # --------------------------------------------------
 st.header("⬇️ Download Sample Dataset")
 
-st.write("Download a Student Performace Data CSV file to understand the required format ")
+st.write("Download a Student Performace Data CSV file to understand the required format.")
 st.write("Fill the data in required format and upload.")
 st.write("You can upload this file directly to test the app.")
-)
 
 csv_path = Path(__file__).parent / "student_academic_placement_performance_dataset.csv"
 
