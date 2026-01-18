@@ -107,15 +107,17 @@ for col in df.select_dtypes(include="object").columns:
 # --------------------------------------------------
 # SALARY RANGE CREATION (4 RANGES)
 # --------------------------------------------------
-if "salary_package_lpa" in df.columns:
-    df["salary_range"] = pd.cut(
+df["salary_range"] = np.where(
+    df["placement_status"] == 1,
+    pd.cut(
         df["salary_package_lpa"],
-        bins=[0, 3, 6, 10, 50],
+        bins=[5, 8, 10, 15, 20],
         labels=[
-            "Low (≤3 LPA)",
-            "Medium (3–6 LPA)",
-            "High (6–10 LPA)",
-            "Very High (>10 LPA)"
+            "Low (≤8 LPA)",
+            "Medium (8–10 LPA)",
+            "Moderate(10-15 LPA)",
+            "High (15–20 LPA)",
+            "Very High (>20 LPA)"
         ]
     )
 
