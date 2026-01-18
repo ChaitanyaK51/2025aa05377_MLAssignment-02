@@ -136,12 +136,18 @@ df["salary_range"] = pd.Categorical(
 
 salary_counts = df["salary_range"].value_counts(sort=False)
 
-ax = salary_counts.plot(kind="bar")
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+salary_counts.plot(kind="bar", ax=ax)
+
+ax.set_ylim(0, salary_counts.max() * 1.15)  # IMPORTANT
 
 for i, v in enumerate(salary_counts.values):
-    ax.text(i, v, str(v), ha="center", va="bottom")
+    ax.text(i, v + 0.1, str(v), ha="center", va="bottom")
 
-plt.show()
+st.pyplot(fig)
 
 
 
