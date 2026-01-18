@@ -135,9 +135,16 @@ df["salary_range"] = pd.Categorical(
 )
 
 salary_counts = df["salary_range"].value_counts(sort=False)
-ax = salary_counts.plot(kind="bar")
+bars = plt.bar(salary_counts.index, salary_counts.values)
 
-ax.bar_label(ax.containers[0])
+for bar in bars:
+    plt.text(
+        bar.get_x() + bar.get_width()/2,
+        bar.get_height(),
+        int(bar.get_height()),
+        ha="center",
+        va="bottom"
+    )
 
 
 # --------------------------------------------------
