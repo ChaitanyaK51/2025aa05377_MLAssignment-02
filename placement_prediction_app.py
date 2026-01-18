@@ -51,7 +51,7 @@ st.write(
     "You can upload this file directly to test the app."
 )
 
-with open("sample_student_placement.csv", "rb") as file:
+with open("student_academic_placement_performance_dataset", "rb") as file:
     st.download_button(
         label="📥 Download Sample CSV",
         data=file,
