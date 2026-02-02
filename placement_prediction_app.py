@@ -100,24 +100,6 @@ if "placement_status" not in df.columns:
 st.subheader("📄 Dataset Preview")
 st.dataframe(df.head())
 
-# --------------------------------------------------
-# ENCODE CATEGORICAL FEATURES
-# --------------------------------------------------
-cat_cols = df.select_dtypes(include="object").columns
-
-X = df.drop(columns=["placement_status", "salary_package_lpa", "salary_range"], errors="ignore")
-y = df["placement_status"].astype(int)
-
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, stratify=y, random_state=42
-)
-
-for col in cat_cols:
-    if col in X_train.columns:
-        le = LabelEncoder()
-        X_train[col] = le.fit_transform(X_train[col])
-        X_test[col] = le.transform(X_test[col])
-
 
 # --------------------------------------------------
 # SALARY RANGE CREATION (4 RANGES)
@@ -171,6 +153,23 @@ X_train, X_test, y_train, y_test = train_test_split(
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)   # fit ONLY on train
 X_test = scaler.transform(X_test)         # transform test
+# --------------------------------------------------
+# ENCODE CATEGORICAL FEATURES
+# --------------------------------------------------
+cat_cols = X_train.select_dtypes(include="object").columns
+
+for col in cat_cols:
+    le = LabelEncoder()
+    X_train[col] = le.fit_transform(X_train[col])
+    X_test[col] = le.transform(X_test[col])
+
+num_cols = X_train.select_dtypes(include=["int64", "float64"]).columns
+
+scaler = StandardScaler()
+
+X_train[num_cols] = scaler.fit_transform(X_train[num_cols])
+X_test[num_cols] = scaler.transform(X_test[num_cols])
+
 
 # --------------------------------------------------
 # MODEL SELECTION
