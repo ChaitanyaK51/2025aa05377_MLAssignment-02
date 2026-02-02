@@ -15,12 +15,12 @@ from sklearn.metrics import (
     classification_report
 )
 
-from models.logistic_regression_model import model as logistic_model
-from models.decision_tree_model import model as decision_tree_model
-from models.knn_model import model as knn_model
-from models.naive_bayes_model import model as naive_bayes_model
-from models.random_forest_model import model as random_forest_model
-from models.xgboost_model import model as xgboost_model
+from model.logistic_regression_model import model as logistic_model
+from model.decision_tree_model import model as decision_tree_model
+from model.knn_model import model as knn_model
+from model.naive_bayes_model import model as naive_bayes_model
+from model.random_forest_model import model as random_forest_model
+from model.xgboost_model import model as xgboost_model
 
 
 import matplotlib.pyplot as plt
