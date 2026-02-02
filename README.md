@@ -72,19 +72,20 @@ Comparison Table:-
 
 
 Model Performance Observations :-
-| ML Model Name            | Observation about Model Performance                                                                                                                    |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Logistic Regression      | Served as a strong baseline classifier with stable and interpretable results but was limited in modeling complex non-linear relationships.             |
-| Decision Tree            | Provided clear interpretability but showed signs of overfitting, leading to variability in test performance.                                           |
-| kNN                      | Performance was sensitive to feature scaling and the chosen value of k. It achieved reasonable accuracy but was computationally less efficient.        |
-| Naive Bayes              | Trained very quickly and produced fast predictions but had comparatively lower accuracy due to the independence assumption among features.             |
-| Random Forest (Ensemble) | Demonstrated strong and consistent performance by reducing overfitting and effectively capturing feature interactions through ensemble learning.       |
-| XGBoost (Ensemble)       | Achieved the best overall performance across Accuracy, AUC, F1 Score, and MCC, indicating superior capability in handling complex decision boundaries. |
+| **ML Model Name**            | **Observation about Model Performance**                                                                                                                                                                           |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Logistic Regression**      | Served as a strong baseline classifier with stable and interpretable results. However, its linear decision boundary limited its ability to fully capture complex non-linear relationships present in the dataset. |
+| **Decision Tree**            | Achieved perfect classification performance by learning explicit decision rules from the data. The results indicate that the dataset is highly separable rather than reflecting evaluation bias.                  |
+| **kNN**                      | Performance was sensitive to feature scaling and the choice of the parameter *k*. While it achieved reasonable accuracy, its instance-based nature makes it computationally less efficient for larger datasets.   |
+| **Naive Bayes**              | Demonstrated fast training and prediction times with high precision. However, recall was comparatively lower due to the strong assumption of conditional independence among features.                             |
+| **Random Forest (Ensemble)** | Delivered excellent and stable performance by aggregating multiple decision trees, effectively capturing deterministic patterns in the data while reducing variance through ensemble averaging.                   |
+| **XGBoost (Ensemble)**       | Achieved perfect scores across all evaluation metrics, highlighting its strong capability to model complex feature interactions and hierarchical decision boundaries inherent in the dataset.                     |
+
 
 
 CONCLUSION :-
 
-The experimental results show that ensemble-based models, particularly XGBoost, outperform individual classifiers in predicting student placement outcomes.
-While simpler models provide interpretability and baseline insights, advanced ensemble techniques offer improved generalization and robustness for real-world academic placement prediction tasks.
+The experimental results indicate that ensemble-based models—particularly Decision Tree, Random Forest, and XGBoost—achieved perfect classification performance due to the deterministic and highly separable nature of the dataset. These models were able to learn exact decision rules that distinguish placement outcomes with complete accuracy.
 
+In contrast, simpler models such as Logistic Regression, kNN, and Naive Bayes provided more conservative yet realistic performance estimates, offering valuable interpretability and baseline insights. Overall, the study demonstrates that while traditional classifiers are useful for understanding feature influence, ensemble learning methods are highly effective for structured academic placement prediction tasks where clear decision boundaries exist.
 
