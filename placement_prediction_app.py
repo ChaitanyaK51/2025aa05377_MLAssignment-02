@@ -231,42 +231,22 @@ metrics_df = pd.DataFrame({
     ]
 })
 
-# --- Center aligned table ---
-st.markdown(
-    """
-    <div style="display: flex; justify-content: center;">
-    """,
-    unsafe_allow_html=True
-)
+# --- CENTER ALIGN USING COLUMNS ---
+left, center, right = st.columns([1, 2, 1])
 
-st.table(
-    metrics_df.style.format({"Value": "{:.3f}"})
-)
+with center:
+    st.table(metrics_df.style.format({"Value": "{:.3f}"}))
 
-st.markdown(
-    """
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-# --- Center aligned explanatory text ---
-st.markdown(
-    """
-    <div style="
-        text-align: center;
-        font-size: 14px;
-        color: #555;
-        margin-top: 10px;
-        line-height: 1.6;
-    ">
-    <b>Accuracy</b>: Overall correctness &nbsp;|&nbsp;
-    <b>AUC</b>: Class separability &nbsp;|&nbsp;
-    <b>MCC</b>: Balanced performance metric
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+    st.markdown(
+        """
+        <p style="text-align: center; font-size: 14px; color: #555;">
+        <b>Accuracy</b>: Overall correctness |
+        <b>AUC</b>: Class separability |
+        <b>MCC</b>: Balanced performance metric
+        </p>
+        """,
+        unsafe_allow_html=True
+    )
 
 # --------------------------------------------------
 # CONFUSION MATRIX
