@@ -294,7 +294,9 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
+st.header("📊 Train vs Test Accuracy")
+st.write("Train accuracy:", accuracy_score(y_train, model.predict(X_train)))
+st.write("Test accuracy:", accuracy_score(y_test, y_pred))
 
 # --------------------------------------------------
 # CONFUSION MATRIX
@@ -387,8 +389,6 @@ if "salary_range" in df.columns:
 
     st.pyplot(fig3)
 
-st.write("Train accuracy:", accuracy_score(y_train, model.predict(X_train)))
-st.write("Test accuracy:", accuracy_score(y_test, y_pred))
 
 
 
