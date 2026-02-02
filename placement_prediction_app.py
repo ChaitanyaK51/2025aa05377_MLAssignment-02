@@ -260,7 +260,34 @@ ax.set_ylabel("True Label")
 st.pyplot(fig)
 
 st.subheader("📄 Classification Report")
-st.text(classification_report(y_test, y_pred))
+
+report_dict = classification_report(
+    y_test,
+    y_pred,
+    output_dict=True
+)
+
+report_df = pd.DataFrame(report_dict).transpose()
+
+report_df = report_df.round(3)
+
+report_df.rename(
+    columns={
+        "precision": "Precision",
+        "recall": "Recall",
+        "f1-score": "F1 Score",
+        "support": "Support"
+    },
+    inplace=True
+)
+
+st.dataframe(
+    report_df.style
+    .background_gradient(cmap="Blues", subset=["Precision", "Recall", "F1 Score"])
+    .format({"Support": "{:.0f}"}),
+    use_container_width=True
+)
+
 
 # --------------------------------------------------
 # SALARY RANGE DISTRIBUTION
