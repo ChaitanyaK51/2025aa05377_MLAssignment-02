@@ -103,9 +103,21 @@ st.dataframe(df.head())
 # --------------------------------------------------
 # ENCODE CATEGORICAL FEATURES
 # --------------------------------------------------
-le = LabelEncoder()
-for col in df.select_dtypes(include="object").columns:
-    df[col] = le.fit_transform(df[col])
+cat_cols = df.select_dtypes(include="object").columns
+
+X = df.drop(columns=["placement_status", "salary_package_lpa", "salary_range"], errors="ignore")
+y = df["placement_status"].astype(int)
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, stratify=y, random_state=42
+)
+
+for col in cat_cols:
+    if col in X_train.columns:
+        le = LabelEncoder()
+        X_train[col] = le.fit_transform(X_train[col])
+        X_test[col] = le.transform(X_test[col])
+
 
 # --------------------------------------------------
 # SALARY RANGE CREATION (4 RANGES)
