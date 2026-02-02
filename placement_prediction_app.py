@@ -140,21 +140,25 @@ df["salary_range"] = pd.Categorical(
 salary_counts = df["salary_range"].value_counts(sort=False)
 
 # --------------------------------------------------
-# FEATURE & TARGET SPLIT
+# FEATURE & TARGET SPLIT 
 # --------------------------------------------------
-X = df.drop(columns=["placement_status", "salary_package_lpa", "salary_range"], errors="ignore")
+X = df.drop(
+    columns=["placement_status", "salary_package_lpa", "salary_range"],
+    errors="ignore"
+)
 y = df["placement_status"].astype(int)
 
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
-
 X_train, X_test, y_train, y_test = train_test_split(
-    X_scaled,
+    X,
     y,
     test_size=0.2,
     random_state=42,
     stratify=y
 )
+
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)   # fit ONLY on train
+X_test = scaler.transform(X_test)         # transform test
 
 # --------------------------------------------------
 # MODEL SELECTION
@@ -174,25 +178,49 @@ model_name = st.selectbox(
 )
 
 if model_name == "Logistic Regression":
-    model = LogisticRegression(max_iter=1000)
+    model = LogisticRegression(
+        max_iter=1000,
+        C=0.5,
+        solver="lbfgs"
+    )
 
 elif model_name == "Decision Tree":
-    model = DecisionTreeClassifier(random_state=42)
+    model = DecisionTreeClassifier(
+        max_depth=6,
+        min_samples_split=10,
+        min_samples_leaf=5,
+        random_state=42
+    )
 
 elif model_name == "kNN":
-    model = KNeighborsClassifier(n_neighbors=5)
+    model = KNeighborsClassifier(
+        n_neighbors=7,
+        weights="distance"
+    )
 
 elif model_name == "Naive Bayes":
     model = GaussianNB()
 
 elif model_name == "Random Forest (Ensemble)":
-    model = RandomForestClassifier(n_estimators=200, random_state=42)
+    model = RandomForestClassifier(
+        n_estimators=300,
+        max_depth=8,
+        min_samples_leaf=5,
+        max_features="sqrt",
+        random_state=42
+    )
 
-else:
+else:  # XGBoost
     model = XGBClassifier(
+        n_estimators=300,
+        max_depth=5,
+        learning_rate=0.05,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        gamma=0.1,
+        reg_lambda=1.0,
         objective="binary:logistic",
         eval_metric="logloss",
-        use_label_encoder=False,
         random_state=42
     )
 
@@ -204,6 +232,13 @@ with st.spinner("Training model..."):
 
 y_pred = model.predict(X_test)
 y_prob = model.predict_proba(X_test)[:, 1]
+
+from sklearn.model_selection import StratifiedKFold, cross_val_score
+
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+cv_f1 = cross_val_score(model, X_train, y_train, cv=cv, scoring="f1")
+
+st.write(f"📌 Cross-Validated F1 Score (mean): {cv_f1.mean():.3f}")
 
 # --------------------------------------------------
 # EVALUATION METRICS
