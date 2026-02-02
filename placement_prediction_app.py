@@ -211,7 +211,16 @@ y_prob = model.predict_proba(X_test)[:, 1]
 st.header("📊 Evaluation Metrics")
 
 auc_value = roc_auc_score(y_test, y_prob) if len(np.unique(y_test)) > 1 else np.nan
-
+st.markdown(
+    """
+    <p style="text-align: center; font-size: 14px; color: #555;">
+    <b>Accuracy</b>: Overall correctness |
+    <b>AUC</b>: Class separability |
+    <b>MCC</b>: Balanced performance metric
+    </p>
+    """,
+    unsafe_allow_html=True
+)
 metrics_df = pd.DataFrame({
     "Metric": [
         "Accuracy",
