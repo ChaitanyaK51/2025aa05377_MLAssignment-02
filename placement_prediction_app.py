@@ -211,16 +211,7 @@ y_prob = model.predict_proba(X_test)[:, 1]
 st.header("📊 Evaluation Metrics")
 
 auc_value = roc_auc_score(y_test, y_prob) if len(np.unique(y_test)) > 1 else np.nan
-st.markdown(
-    """
-    <p style="text-align: center; font-size: 14px; color: #555;">
-    <b>Accuracy</b>: Overall correctness |
-    <b>AUC</b>: Class separability |
-    <b>MCC</b>: Balanced performance metric
-    </p>
-    """,
-    unsafe_allow_html=True
-)
+
 metrics_df = pd.DataFrame({
     "Metric": [
         "Accuracy",
@@ -240,12 +231,41 @@ metrics_df = pd.DataFrame({
     ]
 })
 
-st.table(metrics_df.style.format({"Value": "{:.3f}"}))
+# --- Center aligned table ---
+st.markdown(
+    """
+    <div style="display: flex; justify-content: center;">
+    """,
+    unsafe_allow_html=True
+)
 
-st.caption(
-    "Accuracy: Overall correctness | "
-    "AUC: Class separability | "
-    "MCC: Balanced performance metric"
+st.table(
+    metrics_df.style.format({"Value": "{:.3f}"})
+)
+
+st.markdown(
+    """
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# --- Center aligned explanatory text ---
+st.markdown(
+    """
+    <div style="
+        text-align: center;
+        font-size: 14px;
+        color: #555;
+        margin-top: 10px;
+        line-height: 1.6;
+    ">
+    <b>Accuracy</b>: Overall correctness &nbsp;|&nbsp;
+    <b>AUC</b>: Class separability &nbsp;|&nbsp;
+    <b>MCC</b>: Balanced performance metric
+    </div>
+    """,
+    unsafe_allow_html=True
 )
 
 # --------------------------------------------------
