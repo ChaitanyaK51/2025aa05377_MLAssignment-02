@@ -134,7 +134,7 @@ df["salary_range"] = pd.Categorical(
 salary_counts = df["salary_range"].value_counts(sort=False)
 
 # --------------------------------------------------
-# FEATURE & TARGET SPLIT 
+# FEATURE & TARGET SPLIT (CORRECT PIPELINE)
 # --------------------------------------------------
 X = df.drop(
     columns=["placement_status", "salary_package_lpa", "salary_range"],
@@ -146,30 +146,31 @@ X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
     test_size=0.2,
-    random_state=42,
-    stratify=y
+    stratify=y,
+    random_state=42
 )
 
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)   # fit ONLY on train
-X_test = scaler.transform(X_test)         # transform test
 # --------------------------------------------------
-# ENCODE CATEGORICAL FEATURES
+# ENCODE CATEGORICAL FEATURES (AFTER SPLIT)
 # --------------------------------------------------
 cat_cols = X_train.select_dtypes(include="object").columns
+
+label_encoders = {}
 
 for col in cat_cols:
     le = LabelEncoder()
     X_train[col] = le.fit_transform(X_train[col])
     X_test[col] = le.transform(X_test[col])
+    label_encoders[col] = le  # stored for safety
 
+# --------------------------------------------------
+# SCALE NUMERIC FEATURES ONLY
+# --------------------------------------------------
 num_cols = X_train.select_dtypes(include=["int64", "float64"]).columns
 
 scaler = StandardScaler()
-
 X_train[num_cols] = scaler.fit_transform(X_train[num_cols])
 X_test[num_cols] = scaler.transform(X_test[num_cols])
-
 
 # --------------------------------------------------
 # MODEL SELECTION
@@ -386,6 +387,8 @@ if "salary_range" in df.columns:
 
     st.pyplot(fig3)
 
+st.write("Train accuracy:", accuracy_score(y_train, model.predict(X_train)))
+st.write("Test accuracy:", accuracy_score(y_test, y_pred))
 
 
 
