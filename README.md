@@ -59,14 +59,16 @@ Each model was evaluated using the following metrics:
 
 Model Performace Metrics:-
 Comparison Table:-
-| ML Model Name            | Accuracy | AUC    | Precision | Recall | F1 Score | MCC    |
-| ------------------------ | -------- | ------ | --------- | ------ | -------- | ------ |
-| Logistic Regression      | 0.891   | 0.936 | 0.719    | 0.607 | 0.658   | 0.597 |
-| Decision Tree            | 1.000   | 1.000 | 1.000    | 1.000 | 1.000   | 1.000 |
-| kNN                      | 0.889   | 0.910 | 0.731    | 0.566 | 0.638   | 0.581 |
-| Naive Bayes              | 0.933 | 0.984 | 0.942    | 0.653 | 0.771   | 0.750 |
-| Random Forest (Ensemble) | 1.000   | 1.000 | 1.000    | 1.000 | 1.000   | 1.000 |
-| XGBoost (Ensemble)       | 1.000   | 1.000 | 1.000    | 1.000 | 1.000   | 1.000 |
+| **ML Model Name**        | **Accuracy** | **AUC**   | **Precision** | **Recall** | **F1 Score** | **MCC**   |
+| ------------------------ | ------------ | --------- | ------------- | ---------- | ------------ | --------- |
+| Logistic Regression      | 0.891        | 0.936     | 0.719         | 0.607      | 0.658        | 0.597     |
+| Decision Tree            | **1.000**    | **1.000** | **1.000**     | **1.000**  | **1.000**    | **1.000** |
+| kNN                      | 0.897        | 0.934     | 0.769         | 0.578      | 0.660        | 0.609     |
+| Naive Bayes              | 0.933        | 0.984     | 0.942         | 0.653      | 0.771        | 0.750     |
+| Random Forest (Ensemble) | **1.000**    | **1.000** | **1.000**     | **1.000**  | **1.000**    | **1.000** |
+| XGBoost (Ensemble)       | **1.000**    | **1.000** | **1.000**     | **1.000**  | **1.000**    | **1.000** |
+
+
 
 
 Model Performance Observations :-
