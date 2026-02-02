@@ -15,12 +15,13 @@ from sklearn.metrics import (
     classification_report
 )
 
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.ensemble import RandomForestClassifier
-from xgboost import XGBClassifier
+from models.logistic_regression_model import model as logistic_model
+from models.decision_tree_model import model as decision_tree_model
+from models.knn_model import model as knn_model
+from models.naive_bayes_model import model as naive_bayes_model
+from models.random_forest_model import model as random_forest_model
+from models.xgboost_model import model as xgboost_model
+
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -173,7 +174,7 @@ X_train[num_cols] = scaler.fit_transform(X_train[num_cols])
 X_test[num_cols] = scaler.transform(X_test[num_cols])
 
 # --------------------------------------------------
-# MODEL SELECTION
+# MODEL SELECTION (IMPORTED MODELS)
 # --------------------------------------------------
 st.header("🧠 Select Classification Model")
 
@@ -190,51 +191,22 @@ model_name = st.selectbox(
 )
 
 if model_name == "Logistic Regression":
-    model = LogisticRegression(
-        max_iter=1000,
-        C=0.5,
-        solver="lbfgs"
-    )
+    model = logistic_model
 
 elif model_name == "Decision Tree":
-    model = DecisionTreeClassifier(
-        max_depth=6,
-        min_samples_split=10,
-        min_samples_leaf=5,
-        random_state=42
-    )
+    model = decision_tree_model
 
 elif model_name == "kNN":
-    model = KNeighborsClassifier(
-        n_neighbors=7,
-        weights="distance"
-    )
+    model = knn_model
 
 elif model_name == "Naive Bayes":
-    model = GaussianNB()
+    model = naive_bayes_model
 
 elif model_name == "Random Forest (Ensemble)":
-    model = RandomForestClassifier(
-        n_estimators=300,
-        max_depth=8,
-        min_samples_leaf=5,
-        max_features="sqrt",
-        random_state=42
-    )
+    model = random_forest_model
 
-else:  # XGBoost
-    model = XGBClassifier(
-        n_estimators=300,
-        max_depth=5,
-        learning_rate=0.05,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        gamma=0.1,
-        reg_lambda=1.0,
-        objective="binary:logistic",
-        eval_metric="logloss",
-        random_state=42
-    )
+else:
+    model = xgboost_model
 
 # --------------------------------------------------
 # TRAIN MODEL
