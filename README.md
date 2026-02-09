@@ -1,4 +1,4 @@
-# 2025aa05377_MLAssignment-02
+# 2025AA05377_MLAssignment-02
 Machine Learning Assignment 02
   Name: KALE CHAITANYA PRASAD 
   Student Id: 2025AA050377
